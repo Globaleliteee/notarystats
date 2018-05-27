@@ -57,6 +57,11 @@ launchlisting () {
                 fi
         done <<< "$(cat $homeuser/komodo/src/dpowassets | grep curl | grep -v \# | sed 's/symbol\\"\:\\\"/\n/g' | grep -v curl | cut -d '\' -f1)"
 }
+shouldrun () {
+        while read line; do
+                isrunning $line
+        done <<< "$launchlistall"
+}
 
 inputparams() {
         case $1 in
@@ -162,13 +167,6 @@ isrunning() {
         fi
 }
 
-shouldrun () {
-        while read line; do
-                isrunning $line
-        done <<< "$launchlistall"
-}
-
-
 generatejson () {
 
         echo "  {\"coin\": ["
@@ -194,17 +192,8 @@ generatejson () {
                                                 \"bestblockhash\": \"$bhactualblock\",
                                                 \"lastnotarized\": \"$lastnotarized\",
                                                 \"lastnotarizedbh\": \"$lastnotarizedbh\",
-                                                \"lastnotarizedtxid\": \"$lastnotarizedtxid\",
-                                                \"ram\": \"$(ps --no-headers -p $(eval "pgrep -f '$processname'") -o pmem | sed 's/\ //g')\",
-                                                \"cpu\": \"$(ps --no-headers -p $(eval "pgrep -f '$processname'") -o pcpu | sed 's/\ //g')\",
-                                                \"goodutxo\": \"$($processcli listunspent | grep $notarysize | wc -l)\",
-                                                \"uptime\":
-                                                        {
-                                                                \"day\": \"$daysprocess\",
-                                                                \"hour\": \"$hoursprocess\",
-                                                                \"minutes\": \"$minutesprocess\",
-                                                                \"second\": \"$secondsprocess\"
-                                                        }"
+                                                \"lastnotarizedtxid\": \"$lastnotarizedtxid\"
+                                                        "
                                                 if [ "$actualjsonparsed" -eq "$totaltojson" ]
                                                 then
                                                         echo "}"
@@ -220,17 +209,8 @@ generatejson () {
                                                 \"bestblockhash\": \"0\",
                                                 \"lastnotarized\": \"0\",
                                                 \"lastnotarizedbh\": \"0\",
-                                                \"lastnotarizedtxid\": \"0\",
-                                                \"ram\": \"0\",
-                                                \"cpu\": \"0\",
-                                                \"goodutxo\": \"0\",
-                                                \"uptime\":
-                                                        {
-                                                                \"day\": \"0\",
-                                                                \"hour\": \"0\",
-                                                                \"minutes\": \"0\",
-                                                                \"second\": \"0\"
-                                                        }"
+                                                \"lastnotarizedtxid\": \"0\"
+                                                        "
                                         if [ "$actualjsonparsed" -eq "$totaltojson" ]
                                         then
                                                 echo "}"
@@ -253,8 +233,13 @@ case $1 in
                 cd $pwdvalue
                 mkdir jsontosend 2>/dev/null
                 generatejson > $(echo "$pwdvalue")/jsontosend/$(echo "$jsondatefilestamp").json
-                scp $(echo "$pwdvalue")/jsontosend/$(echo "$jsondatefilestamp").json dwy@webstats:/var/www/html/game/json
+                scp $(echo "$pwdvalue")/jsontosend/$(echo "$jsondatefilestamp").json dwy@notarystats:/var/www/html/json
         ;;
+         "shouldrun")
+                echo -e "$NC$(date '+%Y-%m-%d %H:%M:%S')$NC\tManual Call\t$1$NC"
+                shouldrun
+        ;;
+
         *)
                 echo "Wtf are you doin here"
         ;;
