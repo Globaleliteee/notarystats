@@ -115,6 +115,10 @@ Now we'll add the key of your Node under the user you specified on the config fi
 Pase your SSH Public key there : 
 
 	ssh-rsa YOUR PUBLIC SSH KEY GENERATED SPECIFICALLY ON THE NN SERVER
+	
+Then restart ssh : 
+
+	sudo service ssh restart
 
 ## General config on webserver
 ### Disable IPV6 (optional)
