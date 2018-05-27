@@ -272,13 +272,13 @@ Go to your script folder (where Simplenode is located)
 Then paste this (replacing the user): 
 
 	#!/bin/bash
-	pwdvalue="/home/dwy/script"
+	pwdvalue="/home/dwy/notarystats/simplenode"
 
 	if [ $(eval "pgrep -f 'simplenode'" | wc -l) == "1" ]
 	then
 			echo "$(date +%s) - ERROR : ALREADY RUNNING" >> $pwdvalue/lazylog/checklog
 	else
-			/home/dwy/script/simplenode json
+			/home/dwy/script/notarystats/simplenode json
 	fi
 
 
