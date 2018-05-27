@@ -195,7 +195,7 @@ Paste this :
     location ~ /\.ht {
         deny all;
     }
-}
+	}
 
 Then reload webserver : 
 
@@ -212,6 +212,10 @@ Take the **webserver** folder from repo, and put it into your **/var/www/html** 
 Test your webserver via http://YOURWEBSERVERIP (or your DN)
 
 You should see the webpage without any info... Yet :)
+
+In case it s not done, just create the json folder : 
+
+	sudo mkdir /var/www/html/json
 
 ### Finishing
 
@@ -267,7 +271,16 @@ Go to your script folder (where Simplenode is located)
 	vi simplecron
 Then paste this (replacing the user): 
 
-	/home/dwy/notarystats/simplenode json
+	#!/bin/bash
+	pwdvalue="/home/dwy/script"
+
+	if [ $(eval "pgrep -f 'simplenode'" | wc -l) == "1" ]
+	then
+			echo "$(date +%s) - ERROR : ALREADY RUNNING" >> $pwdvalue/lazylog/checklog
+	else
+			/home/dwy/script/simplenode json
+	fi
+
 
 Add simplecron to your crontab : 
 
