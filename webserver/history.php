@@ -56,7 +56,7 @@ $json=json_decode(file_get_contents('./json/'.$thisfile),true);
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Dwy NN Status</title>
+    <title>Notarization Status</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@ $json=json_decode(file_get_contents('./json/'.$thisfile),true);
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Dwy NN Status</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Notarization Status</a>
       <ul class="navbar-nav px-3">
       </ul>
     </nav>
@@ -76,6 +76,11 @@ $json=json_decode(file_get_contents('./json/'.$thisfile),true);
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
+		<ul id="global" style="list-style: none;" class="nav-item">
+                                                <li><span data-feather="home"></span><a href='index.php'> Global</a>
+                                                </li>
+                                        </ul>
+
                                         <ul id="historyul" style="list-style: none;" class="nav-item">
                                                 <li><span data-feather="file-plus"></span> History
                                                         <div id="history" class="collapse">
