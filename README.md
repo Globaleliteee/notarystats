@@ -216,6 +216,11 @@ You should see the webpage without any info... Yet :)
 In case it s not done, just create the json folder : 
 
 	sudo mkdir /var/www/html/json
+	
+Check that you for good owner/group, and change it if needed : 
+
+	cd /var/www/html
+	sudo chown -R dwy:dwy *
 
 ### Finishing
 
