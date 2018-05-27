@@ -278,7 +278,7 @@ Then paste this (replacing the user):
 	then
 			echo "$(date +%s) - ERROR : ALREADY RUNNING" >> $pwdvalue/lazylog/checklog
 	else
-			/home/dwy/script/notarystats/simplenode json
+			/home/dwy/notarystats/simplenode json
 	fi
 
 
