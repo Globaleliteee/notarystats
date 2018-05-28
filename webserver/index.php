@@ -108,13 +108,14 @@
 						<thead>
 							<tr>
 								<th>Name</th>
-                                                                <th>Block</th>
-                                                                <th>Headers</th>
-                                                                <th>Hash</th>
-								<th>Lastnotarized</th>
-                                                                <th>LastNotarizedHash</th>
-                                                                <th>LastNotarizedTXID</th>
-								
+                                                                <th>blocks</th>
+                                                                <th>headers</th>
+                                                                <th>hash</th>
+								<th>notarized</th>
+                                                                <th>lag</th>
+								<th>notarizedhash</th>
+                                                                <th>notarizedtxid</th>
+									
 							</tr>
 						</thead>
 						<tbody>
@@ -122,18 +123,20 @@
 								if ($value['running']==1) { echo "<tr style='background:#86C98A;'>";} else { echo "<tr style='background:#D46D6A;'>";}
 								echo "
 								<td>".$value['name']."</td>";
-								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['block']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['blocks']."</td>";
+                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
                                                                 echo $value['headers']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['bestblockhash']."</td>";
-								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['lastnotarized']."</td>";
-								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['lastnotarizedbh']."</td>";
-								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['block']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['lastnotarizedtxid']."</td>";
+                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['hash']."</td>";
+								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['notarized']."</td>";
+								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['lag']."</td>";
+								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['notarizedhash']."</td>";
+								if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+                                                                echo $value['notarizedtxid']."</td>";
 
 								echo "</tr>";
 								}
