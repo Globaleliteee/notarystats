@@ -106,7 +106,7 @@ inputparams() {
                         debugpath="$homeuser.bitcoin/debug.log"
                         ntrzaddr="1P3rU1Nk1pmc2BiWC8dEy9bZa1ZbMp5jfg"
                 ;;
-                                "kmd")
+				"kmd")
                         processname="$komodo_binary_name -genproclimit=1"
                         processcli="$komodo_cli"
                         processmincount=1

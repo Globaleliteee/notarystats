@@ -76,23 +76,22 @@ $json=json_decode(file_get_contents('./json/'.$thisfile),true);
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
-		<ul id="global" style="list-style: none;" class="nav-item">
-                                                <li><span data-feather="home"></span><a href='index.php'> Global</a>
-                                                </li>
-                                        </ul>
-
-                                        <ul id="historyul" style="list-style: none;" class="nav-item">
-                                                <li><span data-feather="file-plus"></span> History
-                                                        <div id="history" class="collapse">
-                                                                <ul class="nav flex-column">
-                                                                        <?php
-                                                                        echo $thelist;
-                                                                        ?>
-                                                                </ul>
-                                                        </div>
-                                                </li>
-                                        </ul>
-                                </div>
+			<ul id="global" style="list-style: none;" class="nav-item">
+				<li><span data-feather="home"></span><a href='index.php'> Global</a>
+				</li>
+			</ul>
+			<ul id="historyul" style="list-style: none;" class="nav-item">
+				<li><span data-feather="file-plus"></span> History
+					<div id="history" class="collapse">
+						<ul class="nav flex-column">
+							<?php
+								echo $thelist;
+							?>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -100,50 +99,45 @@ $json=json_decode(file_get_contents('./json/'.$thisfile),true);
 		  <div class="col-md-3" style="font-size:20px;padding:10px;"><?php echo date("Y-m-d H:i:s",basename($thisfile,".json")); ?></div>
         </div>
 		  				 
-          <h2>Processes</h2>
-          <div class="table-responsive">
-
- <table class="table table-striped table-sm">
-                                                <thead>
-                                                        <tr>
-                                                                <th>Name</th>
-                                                                <th>blocks</th>
-                                                                <th>headers</th>
-                                                                <th>hash</th>
-                                                                <th>notarized</th>
-                                                                <th>lag</th>
-                                                                <th>notarizedhash</th>
-                                                                <th>notarizedtxid</th>
-
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        <?php foreach ($json['coin'] as $value) {
-                                                                if ($value['running']==1) { echo "<tr style='background:#86C98A;'>";} else { echo "<tr style='background:#D46D6A;'>";}
-                                                                echo "
-                                                                <td>".$value['name']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['blocks']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['headers']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['hash']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['notarized']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['lag']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['notarizedhash']."</td>";
-                                                                if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
-                                                                echo $value['notarizedtxid']."</td>";
-
-                                                                echo "</tr>";
-                                                                }
-                                                        ?>
-                                                </tbody>
-                                        </table>
- 
-	</div>
+		<h2>Processes</h2>
+		<div class="table-responsive">
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>blocks</th>
+						<th>headers</th>
+						<th>hash</th>
+						<th>notarized</th>
+						<th>lag</th>
+						<th>notarizedhash</th>
+						<th>notarizedtxid</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($json['coin'] as $value) {
+						if ($value['running']==1) { echo "<tr style='background:#86C98A;'>";} else { echo "<tr style='background:#D46D6A;'>";}
+							echo "<td>".$value['name']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['blocks']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['headers']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['hash']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['notarized']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['lag']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['notarizedhash']."</td>";
+						if ($value['running']==0) {echo "<td style='background:#D46D6A;'>";} else if ($value['blocks']==$value['headers']) { echo "<td style='background:#86C98A;'>";} else { echo "<td style='background:#98AACA;'>";}
+							echo $value['notarizedtxid']."</td>";
+						echo "</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
         </main>
       </div>
     </div>
